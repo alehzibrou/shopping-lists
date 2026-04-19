@@ -29,7 +29,10 @@ export const shortcutsLayout = {
   columnGap: 4,
 } as const;
 
-/** Figma order-again block (70121:70105) + thumb (70121:70450) */
+/**
+ * Figma order-again (70121:70105): root is `py-12` + `gap-16` only; `px-24` is on
+ * Header (70475) and Provider row (70156) separately — not on the outer wrapper.
+ */
 export const orderAgainLayout = {
   horizontalPadding: 24,
   verticalPadding: 12,
@@ -39,4 +42,10 @@ export const orderAgainLayout = {
   thumbSize: 86,
   thumbRadius: 12,
   labelGap: 4,
+  /** [Header] Meta Header M — "All" + chevron (70121:70487) */
+  metaHeaderWidth: 40,
+  metaHeaderHeight: 25,
+  metaHeaderPaddingTop: 5,
+  allLinkGap: 4,
+  allLinkRadius: 4,
 } as const;
