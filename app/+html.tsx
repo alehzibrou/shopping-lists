@@ -35,4 +35,15 @@ body {
   body {
     background-color: #000;
   }
-}`;
+}
+/* Horizontal shortcuts strip: hide scrollbar (RN Web maps nativeID to element id). */
+#shortcuts-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#shortcuts-carousel::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
+}
+`;

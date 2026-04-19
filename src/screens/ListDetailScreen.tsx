@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -7,7 +8,8 @@ import type { ShoppingItem } from '@/src/types/shoppingList';
 import { AppText, ChecklistRow, PrimaryButton, ScreenContainer } from '@/src/components';
 import { spacing } from '@/src/theme/spacing';
 
-export default function ListDetailScreen() {
+export function ListDetailScreen() {
+  const navigation = useNavigation();
   const { listId } = useLocalSearchParams<{ listId?: string }>();
   const resolvedId = typeof listId === 'string' ? listId : mockLists[0]?.id ?? '1';
 
@@ -15,6 +17,10 @@ export default function ListDetailScreen() {
     () => mockLists.find((l) => l.id === resolvedId) ?? mockLists[0],
     [resolvedId],
   );
+
+  useLayoutEffect(() => {
+    navigation.setOptions({ title: listMeta?.name ?? 'List' });
+  }, [navigation, listMeta?.name]);
 
   const [items, setItems] = useState<ShoppingItem[]>(() => getItemsForList(resolvedId));
 
@@ -30,9 +36,6 @@ export default function ListDetailScreen() {
     <ScreenContainer>
       <View style={styles.body}>
         <View style={styles.header}>
-          <AppText variant="title" numberOfLines={2}>
-            {listMeta?.name ?? 'List'}
-          </AppText>
           <AppText variant="caption" muted>
             Check items off as you shop. State resets when you reload (prototype).
           </AppText>

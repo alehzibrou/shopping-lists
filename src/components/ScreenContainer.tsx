@@ -8,15 +8,21 @@ import { spacing } from '@/src/theme/spacing';
 
 type Props = PropsWithChildren<{
   edges?: ('top' | 'bottom' | 'left' | 'right')[];
+  /** When true, horizontal padding is omitted (e.g. full-bleed carousels). */
+  noHorizontalPadding?: boolean;
 }>;
 
-export function ScreenContainer({ children, edges = ['top', 'left', 'right'] }: Props) {
+export function ScreenContainer({
+  children,
+  edges = ['top', 'left', 'right'],
+  noHorizontalPadding,
+}: Props) {
   const scheme = useColorScheme() ?? 'light';
   const bg = scheme === 'dark' ? paletteDark.surface : palette.surface;
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: bg }]} edges={edges}>
-      <View style={styles.inner}>{children}</View>
+      <View style={[styles.inner, noHorizontalPadding && styles.innerFlushH]}>{children}</View>
     </SafeAreaView>
   );
 }
@@ -29,5 +35,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.lg,
+  },
+  innerFlushH: {
+    paddingHorizontal: 0,
   },
 });
