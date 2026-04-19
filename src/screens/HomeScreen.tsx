@@ -2,6 +2,7 @@ import { Link } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
 
 import { AppText, ScreenContainer } from '@/src/components';
+import { OrderAgainCarousel } from '@/src/components/orderAgain';
 import { ShortcutsCarousel } from '@/src/components/shortcuts';
 import { palette, paletteDark } from '@/src/theme/colors';
 import { radii, spacing } from '@/src/theme/spacing';
@@ -34,6 +35,8 @@ export function HomeScreen() {
         </View>
 
         <ShortcutsCarousel />
+
+        <OrderAgainCarousel />
 
         <View style={[styles.column, { width: contentWidth, marginHorizontal: gutter }]}>
           <Link href="/(tabs)/lists" asChild>

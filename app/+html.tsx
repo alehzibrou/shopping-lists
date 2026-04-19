@@ -46,4 +46,13 @@ body {
   height: 0;
   width: 0;
 }
+#order-again-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+#order-again-carousel::-webkit-scrollbar {
+  display: none;
+  height: 0;
+  width: 0;
+}
 `;

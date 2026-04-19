@@ -28,3 +28,15 @@ export const shortcutsLayout = {
   iconPadding: 12,
   columnGap: 4,
 } as const;
+
+/** Figma order-again block (70121:70105) + thumb (70121:70450) */
+export const orderAgainLayout = {
+  horizontalPadding: 24,
+  verticalPadding: 12,
+  headerToRowGap: 16,
+  titleRowGap: 12,
+  itemGap: 12,
+  thumbSize: 86,
+  thumbRadius: 12,
+  labelGap: 4,
+} as const;
