@@ -2,12 +2,16 @@ import { useCallback } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { useRouter } from 'expo-router';
 
+import { useColorScheme } from '@/components/useColorScheme';
 import { mockLists } from '@/src/data/mockData';
 import { ListSummaryCard, PrimaryButton, ScreenContainer, AppText } from '@/src/components';
+import { palette, paletteDark } from '@/src/theme/colors';
 import { spacing } from '@/src/theme/spacing';
 
 export function ShoppingListsScreen() {
   const router = useRouter();
+  const scheme = useColorScheme() ?? 'light';
+  const p = scheme === 'dark' ? paletteDark : palette;
 
   const openList = useCallback(
     (listId: string) => {
@@ -20,7 +24,9 @@ export function ShoppingListsScreen() {
     <ScreenContainer>
       <View style={styles.body}>
         <View style={styles.header}>
-          <AppText variant="title">My lists</AppText>
+          <AppText variant="title" style={{ color: p.contentPrimary }}>
+            My lists
+          </AppText>
           <AppText variant="caption" muted style={styles.subtitle}>
             Tap a list to review items. This build is for usability testing on web.
           </AppText>

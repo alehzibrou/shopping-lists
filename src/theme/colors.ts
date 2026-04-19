@@ -9,6 +9,10 @@ export const palette = {
   border: '#E4E4E7',
   text: '#18181B',
   textMuted: '#71717A',
+  /** Consumer / Figma — content primary (Body S on shortcuts). */
+  contentPrimary: '#191F1C',
+  /** Figma token bg/neutral-secondary */
+  shortcutIconBg: 'rgba(0, 45, 30, 0.07)',
   danger: '#DC2626',
   success: '#16A34A',
 } as const;
@@ -21,6 +25,8 @@ export const paletteDark = {
   border: '#27272A',
   text: '#FAFAFA',
   textMuted: '#A1A1AA',
+  contentPrimary: '#F2F4F3',
+  shortcutIconBg: 'rgba(255, 255, 255, 0.1)',
   danger: '#F87171',
   success: '#4ADE80',
 } as const;

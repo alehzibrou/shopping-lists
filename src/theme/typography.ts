@@ -19,4 +19,11 @@ export const typography = {
     fontSize: 13,
     fontWeight: '400',
   } satisfies TextStyle,
+  /** Figma Body S / Regular — shortcuts row labels (node 70114:78271). */
+  shortcut: {
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: '400',
+    letterSpacing: -0.084,
+  } satisfies TextStyle,
 } as const;

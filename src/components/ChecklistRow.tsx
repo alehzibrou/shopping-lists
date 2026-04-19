@@ -41,8 +41,11 @@ export function ChecklistRow({ label, checked, onToggle }: Props) {
       />
       <AppText
         variant="body"
-        muted={checked}
-        style={[styles.label, checked && styles.strike]}>
+        style={[
+          styles.label,
+          { color: checked ? p.textMuted : p.contentPrimary },
+          checked && styles.strike,
+        ]}>
         {label}
       </AppText>
     </Pressable>

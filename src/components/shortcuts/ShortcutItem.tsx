@@ -1,16 +1,20 @@
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 
+import { useColorScheme } from '@/components/useColorScheme';
 import { AppText } from '@/src/components/AppText';
-import { radii, spacing } from '@/src/theme/spacing';
+import { palette, paletteDark } from '@/src/theme/colors';
+import { radii, shortcutsLayout } from '@/src/theme/spacing';
 import type { ShortcutItemData } from '@/src/types/shortcuts';
 
 type Props = {
   item: ShortcutItemData;
-  imageSize: number;
-  itemWidth: number;
 };
 
-export function ShortcutItem({ item, imageSize, itemWidth }: Props) {
+const { itemWidth, iconOuter, iconInner, iconPadding, columnGap } = shortcutsLayout;
+
+export function ShortcutItem({ item }: Props) {
+  const scheme = useColorScheme() ?? 'light';
+  const p = scheme === 'dark' ? paletteDark : palette;
   const onPress = item.onPress ?? (() => {});
 
   return (
@@ -18,11 +22,31 @@ export function ShortcutItem({ item, imageSize, itemWidth }: Props) {
       accessibilityRole="button"
       accessibilityLabel={item.label}
       onPress={onPress}
-      style={({ pressed }) => [styles.wrap, { width: itemWidth, opacity: pressed ? 0.88 : 1 }]}>
-      <View style={[styles.imageFrame, { width: imageSize, height: imageSize, borderRadius: radii.lg }]}>
-        <Image source={item.image} style={styles.image} resizeMode="cover" accessibilityIgnoresInvertColors />
+      style={({ pressed }) => [
+        styles.wrap,
+        { width: itemWidth, opacity: pressed ? 0.88 : 1 },
+      ]}>
+      <View
+        style={[
+          styles.iconBubble,
+          {
+            width: iconOuter,
+            height: iconOuter,
+            borderRadius: iconOuter / 2,
+            backgroundColor: p.shortcutIconBg,
+            padding: iconPadding,
+          },
+        ]}>
+        <View style={styles.iconInner}>
+          <Image
+            source={item.image}
+            style={styles.image}
+            resizeMode={item.resizeMode ?? 'contain'}
+            accessibilityIgnoresInvertColors
+          />
+        </View>
       </View>
-      <AppText variant="caption" numberOfLines={2} style={[styles.label, { fontWeight: '500' }]}>
+      <AppText variant="shortcut" numberOfLines={2} style={[styles.label, { color: p.contentPrimary }]}>
         {item.label}
       </AppText>
     </Pressable>
@@ -32,11 +56,20 @@ export function ShortcutItem({ item, imageSize, itemWidth }: Props) {
 const styles = StyleSheet.create({
   wrap: {
     alignItems: 'center',
-    paddingHorizontal: spacing.xs,
-  },
-  imageFrame: {
+    gap: columnGap,
+    borderRadius: radii.shortcut,
     overflow: 'hidden',
-    marginBottom: spacing.sm,
+  },
+  iconBubble: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  iconInner: {
+    width: iconInner,
+    height: iconInner,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   image: {
     width: '100%',

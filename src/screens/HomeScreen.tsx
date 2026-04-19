@@ -24,7 +24,9 @@ export function HomeScreen() {
         showsVerticalScrollIndicator={false}>
         <View style={[styles.column, { width: contentWidth, marginHorizontal: gutter }]}>
           <View style={styles.hero}>
-            <AppText variant="title">Home</AppText>
+            <AppText variant="title" style={{ color: p.contentPrimary }}>
+              Home
+            </AppText>
             <AppText variant="caption" muted style={styles.lede}>
               Browse shortcuts below, then open your shopping lists when you are ready.
             </AppText>
@@ -41,11 +43,13 @@ export function HomeScreen() {
                 styles.listsCta,
                 {
                   borderColor: p.border,
-                  backgroundColor: p.surfaceMuted,
+                  backgroundColor: p.shortcutIconBg,
                   opacity: pressed ? 0.9 : 1,
                 },
               ]}>
-              <AppText variant="subtitle">My lists</AppText>
+              <AppText variant="subtitle" style={{ color: p.contentPrimary }}>
+                My lists
+              </AppText>
               <AppText variant="caption" muted>
                 View and edit your shopping lists
               </AppText>

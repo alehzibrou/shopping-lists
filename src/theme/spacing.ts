@@ -12,5 +12,19 @@ export const radii = {
   sm: 6,
   md: 10,
   lg: 14,
+  /** Figma shortcut item outer corner */
+  shortcut: 8,
   full: 9999,
+} as const;
+
+/** Figma shortcuts row (70114:78256) */
+export const shortcutsLayout = {
+  horizontalPadding: 24,
+  verticalPadding: 12,
+  itemGap: 12,
+  itemWidth: 86,
+  iconOuter: 72,
+  iconInner: 48,
+  iconPadding: 12,
+  columnGap: 4,
 } as const;

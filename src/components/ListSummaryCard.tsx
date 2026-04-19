@@ -29,7 +29,7 @@ export function ListSummaryCard({ title, itemCount, onPress }: Props) {
         },
       ]}>
       <View style={styles.row}>
-        <AppText variant="subtitle" style={styles.title} numberOfLines={2}>
+        <AppText variant="subtitle" style={[styles.title, { color: p.contentPrimary }]} numberOfLines={2}>
           {title}
         </AppText>
         <AppText variant="caption" muted>

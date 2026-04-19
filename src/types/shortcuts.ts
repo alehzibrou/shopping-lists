@@ -1,9 +1,13 @@
-import type { ImageSourcePropType } from 'react-native';
+import type { ImageResizeMode, ImageSourcePropType } from 'react-native';
 
 export type ShortcutItemData = {
   id: string;
   label: string;
-  /** Raster from Figma export — replace files under assets/shortcuts for 1:1 design parity. */
+  /**
+   * Figma MCP serves rasters at `http://localhost:3845/assets/...` while the desktop server runs.
+   * Replace with bundled `require()` assets for offline/production if needed.
+   */
   image: ImageSourcePropType;
+  resizeMode?: ImageResizeMode;
   onPress?: () => void;
 };
